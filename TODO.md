@@ -2,6 +2,7 @@
 
 - [x] binding generator
 - [ ] verify all spine signatures
+- [ ] convert the c comments to odin comments too
 - [x] macOS static `libspine-c`
 - [ ] macOS dynamic `libspine-c`
 - [ ] Windows static `libspine-c`
