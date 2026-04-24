@@ -51,19 +51,19 @@ class String
     return 'cstring' if clean == 'const char *'
 
     # multi-pointers
-    return '[^]^c.uchar' if clean == 'const unsigned char *'
-    return '[^]^c.uint8_t' if clean == 'const uint8_t *'
-    return '[^]^c.float' if clean == 'float *'
-    return '[^]^c.int' if clean == 'int *'
-    return '[^]^c.ushort' if clean == 'unsigned short *'
-    return '[^]^c.int16_t' if clean == 'int16_t *'
-    return '[^]^c.uint16_t' if clean == 'uint16_t *'
-    return '[^]^c.int32_t' if clean == 'int32_t *'
-    return '[^]^c.uint32_t' if clean == 'uint32_t *'
-    return '[^]^c.int64_t' if clean == 'int64_t *'
+    return '[^]c.uchar' if clean == 'const unsigned char *'
+    return '[^]c.uint8_t' if clean == 'const uint8_t *'
+    return '[^]c.float' if clean == 'float *'
+    return '[^]c.int' if clean == 'int *'
+    return '[^]c.ushort' if clean == 'unsigned short *'
+    return '[^]c.int16_t' if clean == 'int16_t *'
+    return '[^]c.uint16_t' if clean == 'uint16_t *'
+    return '[^]c.int32_t' if clean == 'int32_t *'
+    return '[^]c.uint32_t' if clean == 'uint32_t *'
+    return '[^]c.int64_t' if clean == 'int64_t *'
 
     # multi-pointer of a spine opaque type
-    return "[^]^#{clean.pascal_case}".gsub('*', '') if clean.end_with?('*')
+    return "[^]#{clean.pascal_case}".gsub('*', '') if clean.end_with?('*')
 
     # spine opaque type
     clean.pascal_case

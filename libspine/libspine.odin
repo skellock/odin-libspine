@@ -326,7 +326,7 @@ foreign lib {
     atlas_result_get_atlas :: proc(result: AtlasResult) -> Atlas ---
     atlas_result_dispose :: proc(result: AtlasResult) ---
     skeleton_data_load_json :: proc(atlas: Atlas, skeleton_data: cstring, path: cstring) -> SkeletonDataResult ---
-    skeleton_data_load_binary :: proc(atlas: Atlas, skeleton_data: [^]^c.uint8_t, length: c.int32_t, path: cstring) -> SkeletonDataResult ---
+    skeleton_data_load_binary :: proc(atlas: Atlas, skeleton_data: [^]c.uint8_t, length: c.int32_t, path: cstring) -> SkeletonDataResult ---
     skeleton_data_result_get_error :: proc(result: SkeletonDataResult) -> cstring ---
     skeleton_data_result_get_data :: proc(result: SkeletonDataResult) -> SkeletonData ---
     skeleton_data_result_dispose :: proc(result: SkeletonDataResult) ---
@@ -442,7 +442,7 @@ foreign lib {
     array_float_remove_at :: proc(array: ArrayFloat, in_index: c.size_t) ---
     array_float_contains :: proc(array: ArrayFloat, in_value: c.float) -> c.bool ---
     array_float_index_of :: proc(array: ArrayFloat, in_value: c.float) -> c.int ---
-    array_float_buffer :: proc(array: ArrayFloat) -> [^]^c.float ---
+    array_float_buffer :: proc(array: ArrayFloat) -> [^]c.float ---
     array_int_create :: proc() -> ArrayInt ---
     array_int_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayInt ---
     array_int_dispose :: proc(array: ArrayInt) ---
@@ -457,7 +457,7 @@ foreign lib {
     array_int_remove_at :: proc(array: ArrayInt, in_index: c.size_t) ---
     array_int_contains :: proc(array: ArrayInt, in_value: c.int) -> c.bool ---
     array_int_index_of :: proc(array: ArrayInt, in_value: c.int) -> c.int ---
-    array_int_buffer :: proc(array: ArrayInt) -> [^]^c.int ---
+    array_int_buffer :: proc(array: ArrayInt) -> [^]c.int ---
     array_unsigned_short_create :: proc() -> ArrayUnsignedShort ---
     array_unsigned_short_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayUnsignedShort ---
     array_unsigned_short_dispose :: proc(array: ArrayUnsignedShort) ---
@@ -472,7 +472,7 @@ foreign lib {
     array_unsigned_short_remove_at :: proc(array: ArrayUnsignedShort, in_index: c.size_t) ---
     array_unsigned_short_contains :: proc(array: ArrayUnsignedShort, in_value: c.ushort) -> c.bool ---
     array_unsigned_short_index_of :: proc(array: ArrayUnsignedShort, in_value: c.ushort) -> c.int ---
-    array_unsigned_short_buffer :: proc(array: ArrayUnsignedShort) -> [^]^c.ushort ---
+    array_unsigned_short_buffer :: proc(array: ArrayUnsignedShort) -> [^]c.ushort ---
     array_property_id_create :: proc() -> ArrayPropertyId ---
     array_property_id_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayPropertyId ---
     array_property_id_dispose :: proc(array: ArrayPropertyId) ---
@@ -487,7 +487,7 @@ foreign lib {
     array_property_id_remove_at :: proc(array: ArrayPropertyId, in_index: c.size_t) ---
     array_property_id_contains :: proc(array: ArrayPropertyId, in_value: c.int64_t) -> c.bool ---
     array_property_id_index_of :: proc(array: ArrayPropertyId, in_value: c.int64_t) -> c.int ---
-    array_property_id_buffer :: proc(array: ArrayPropertyId) -> [^]^c.int64_t ---
+    array_property_id_buffer :: proc(array: ArrayPropertyId) -> [^]c.int64_t ---
     array_animation_create :: proc() -> ArrayAnimation ---
     array_animation_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayAnimation ---
     array_animation_dispose :: proc(array: ArrayAnimation) ---
@@ -502,7 +502,7 @@ foreign lib {
     array_animation_remove_at :: proc(array: ArrayAnimation, in_index: c.size_t) ---
     array_animation_contains :: proc(array: ArrayAnimation, in_value: Animation) -> c.bool ---
     array_animation_index_of :: proc(array: ArrayAnimation, in_value: Animation) -> c.int ---
-    array_animation_buffer :: proc(array: ArrayAnimation) -> [^]^Animation ---
+    array_animation_buffer :: proc(array: ArrayAnimation) -> [^]Animation ---
     array_atlas_page_create :: proc() -> ArrayAtlasPage ---
     array_atlas_page_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayAtlasPage ---
     array_atlas_page_dispose :: proc(array: ArrayAtlasPage) ---
@@ -517,7 +517,7 @@ foreign lib {
     array_atlas_page_remove_at :: proc(array: ArrayAtlasPage, in_index: c.size_t) ---
     array_atlas_page_contains :: proc(array: ArrayAtlasPage, in_value: AtlasPage) -> c.bool ---
     array_atlas_page_index_of :: proc(array: ArrayAtlasPage, in_value: AtlasPage) -> c.int ---
-    array_atlas_page_buffer :: proc(array: ArrayAtlasPage) -> [^]^AtlasPage ---
+    array_atlas_page_buffer :: proc(array: ArrayAtlasPage) -> [^]AtlasPage ---
     array_atlas_region_create :: proc() -> ArrayAtlasRegion ---
     array_atlas_region_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayAtlasRegion ---
     array_atlas_region_dispose :: proc(array: ArrayAtlasRegion) ---
@@ -532,7 +532,7 @@ foreign lib {
     array_atlas_region_remove_at :: proc(array: ArrayAtlasRegion, in_index: c.size_t) ---
     array_atlas_region_contains :: proc(array: ArrayAtlasRegion, in_value: AtlasRegion) -> c.bool ---
     array_atlas_region_index_of :: proc(array: ArrayAtlasRegion, in_value: AtlasRegion) -> c.int ---
-    array_atlas_region_buffer :: proc(array: ArrayAtlasRegion) -> [^]^AtlasRegion ---
+    array_atlas_region_buffer :: proc(array: ArrayAtlasRegion) -> [^]AtlasRegion ---
     array_attachment_create :: proc() -> ArrayAttachment ---
     array_attachment_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayAttachment ---
     array_attachment_dispose :: proc(array: ArrayAttachment) ---
@@ -547,7 +547,7 @@ foreign lib {
     array_attachment_remove_at :: proc(array: ArrayAttachment, in_index: c.size_t) ---
     array_attachment_contains :: proc(array: ArrayAttachment, in_value: Attachment) -> c.bool ---
     array_attachment_index_of :: proc(array: ArrayAttachment, in_value: Attachment) -> c.int ---
-    array_attachment_buffer :: proc(array: ArrayAttachment) -> [^]^Attachment ---
+    array_attachment_buffer :: proc(array: ArrayAttachment) -> [^]Attachment ---
     array_bone_create :: proc() -> ArrayBone ---
     array_bone_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayBone ---
     array_bone_dispose :: proc(array: ArrayBone) ---
@@ -562,7 +562,7 @@ foreign lib {
     array_bone_remove_at :: proc(array: ArrayBone, in_index: c.size_t) ---
     array_bone_contains :: proc(array: ArrayBone, in_value: Bone) -> c.bool ---
     array_bone_index_of :: proc(array: ArrayBone, in_value: Bone) -> c.int ---
-    array_bone_buffer :: proc(array: ArrayBone) -> [^]^Bone ---
+    array_bone_buffer :: proc(array: ArrayBone) -> [^]Bone ---
     array_bone_data_create :: proc() -> ArrayBoneData ---
     array_bone_data_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayBoneData ---
     array_bone_data_dispose :: proc(array: ArrayBoneData) ---
@@ -577,7 +577,7 @@ foreign lib {
     array_bone_data_remove_at :: proc(array: ArrayBoneData, in_index: c.size_t) ---
     array_bone_data_contains :: proc(array: ArrayBoneData, in_value: BoneData) -> c.bool ---
     array_bone_data_index_of :: proc(array: ArrayBoneData, in_value: BoneData) -> c.int ---
-    array_bone_data_buffer :: proc(array: ArrayBoneData) -> [^]^BoneData ---
+    array_bone_data_buffer :: proc(array: ArrayBoneData) -> [^]BoneData ---
     array_bone_pose_create :: proc() -> ArrayBonePose ---
     array_bone_pose_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayBonePose ---
     array_bone_pose_dispose :: proc(array: ArrayBonePose) ---
@@ -592,7 +592,7 @@ foreign lib {
     array_bone_pose_remove_at :: proc(array: ArrayBonePose, in_index: c.size_t) ---
     array_bone_pose_contains :: proc(array: ArrayBonePose, in_value: BonePose) -> c.bool ---
     array_bone_pose_index_of :: proc(array: ArrayBonePose, in_value: BonePose) -> c.int ---
-    array_bone_pose_buffer :: proc(array: ArrayBonePose) -> [^]^BonePose ---
+    array_bone_pose_buffer :: proc(array: ArrayBonePose) -> [^]BonePose ---
     array_bounding_box_attachment_create :: proc() -> ArrayBoundingBoxAttachment ---
     array_bounding_box_attachment_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayBoundingBoxAttachment ---
     array_bounding_box_attachment_dispose :: proc(array: ArrayBoundingBoxAttachment) ---
@@ -607,7 +607,7 @@ foreign lib {
     array_bounding_box_attachment_remove_at :: proc(array: ArrayBoundingBoxAttachment, in_index: c.size_t) ---
     array_bounding_box_attachment_contains :: proc(array: ArrayBoundingBoxAttachment, in_value: BoundingBoxAttachment) -> c.bool ---
     array_bounding_box_attachment_index_of :: proc(array: ArrayBoundingBoxAttachment, in_value: BoundingBoxAttachment) -> c.int ---
-    array_bounding_box_attachment_buffer :: proc(array: ArrayBoundingBoxAttachment) -> [^]^BoundingBoxAttachment ---
+    array_bounding_box_attachment_buffer :: proc(array: ArrayBoundingBoxAttachment) -> [^]BoundingBoxAttachment ---
     array_constraint_create :: proc() -> ArrayConstraint ---
     array_constraint_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayConstraint ---
     array_constraint_dispose :: proc(array: ArrayConstraint) ---
@@ -622,7 +622,7 @@ foreign lib {
     array_constraint_remove_at :: proc(array: ArrayConstraint, in_index: c.size_t) ---
     array_constraint_contains :: proc(array: ArrayConstraint, in_value: Constraint) -> c.bool ---
     array_constraint_index_of :: proc(array: ArrayConstraint, in_value: Constraint) -> c.int ---
-    array_constraint_buffer :: proc(array: ArrayConstraint) -> [^]^Constraint ---
+    array_constraint_buffer :: proc(array: ArrayConstraint) -> [^]Constraint ---
     array_constraint_data_create :: proc() -> ArrayConstraintData ---
     array_constraint_data_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayConstraintData ---
     array_constraint_data_dispose :: proc(array: ArrayConstraintData) ---
@@ -637,7 +637,7 @@ foreign lib {
     array_constraint_data_remove_at :: proc(array: ArrayConstraintData, in_index: c.size_t) ---
     array_constraint_data_contains :: proc(array: ArrayConstraintData, in_value: ConstraintData) -> c.bool ---
     array_constraint_data_index_of :: proc(array: ArrayConstraintData, in_value: ConstraintData) -> c.int ---
-    array_constraint_data_buffer :: proc(array: ArrayConstraintData) -> [^]^ConstraintData ---
+    array_constraint_data_buffer :: proc(array: ArrayConstraintData) -> [^]ConstraintData ---
     array_event_create :: proc() -> ArrayEvent ---
     array_event_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayEvent ---
     array_event_dispose :: proc(array: ArrayEvent) ---
@@ -652,7 +652,7 @@ foreign lib {
     array_event_remove_at :: proc(array: ArrayEvent, in_index: c.size_t) ---
     array_event_contains :: proc(array: ArrayEvent, in_value: Event) -> c.bool ---
     array_event_index_of :: proc(array: ArrayEvent, in_value: Event) -> c.int ---
-    array_event_buffer :: proc(array: ArrayEvent) -> [^]^Event ---
+    array_event_buffer :: proc(array: ArrayEvent) -> [^]Event ---
     array_event_data_create :: proc() -> ArrayEventData ---
     array_event_data_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayEventData ---
     array_event_data_dispose :: proc(array: ArrayEventData) ---
@@ -667,7 +667,7 @@ foreign lib {
     array_event_data_remove_at :: proc(array: ArrayEventData, in_index: c.size_t) ---
     array_event_data_contains :: proc(array: ArrayEventData, in_value: EventData) -> c.bool ---
     array_event_data_index_of :: proc(array: ArrayEventData, in_value: EventData) -> c.int ---
-    array_event_data_buffer :: proc(array: ArrayEventData) -> [^]^EventData ---
+    array_event_data_buffer :: proc(array: ArrayEventData) -> [^]EventData ---
     array_from_property_create :: proc() -> ArrayFromProperty ---
     array_from_property_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayFromProperty ---
     array_from_property_dispose :: proc(array: ArrayFromProperty) ---
@@ -682,7 +682,7 @@ foreign lib {
     array_from_property_remove_at :: proc(array: ArrayFromProperty, in_index: c.size_t) ---
     array_from_property_contains :: proc(array: ArrayFromProperty, in_value: FromProperty) -> c.bool ---
     array_from_property_index_of :: proc(array: ArrayFromProperty, in_value: FromProperty) -> c.int ---
-    array_from_property_buffer :: proc(array: ArrayFromProperty) -> [^]^FromProperty ---
+    array_from_property_buffer :: proc(array: ArrayFromProperty) -> [^]FromProperty ---
     array_physics_constraint_create :: proc() -> ArrayPhysicsConstraint ---
     array_physics_constraint_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayPhysicsConstraint ---
     array_physics_constraint_dispose :: proc(array: ArrayPhysicsConstraint) ---
@@ -697,7 +697,7 @@ foreign lib {
     array_physics_constraint_remove_at :: proc(array: ArrayPhysicsConstraint, in_index: c.size_t) ---
     array_physics_constraint_contains :: proc(array: ArrayPhysicsConstraint, in_value: PhysicsConstraint) -> c.bool ---
     array_physics_constraint_index_of :: proc(array: ArrayPhysicsConstraint, in_value: PhysicsConstraint) -> c.int ---
-    array_physics_constraint_buffer :: proc(array: ArrayPhysicsConstraint) -> [^]^PhysicsConstraint ---
+    array_physics_constraint_buffer :: proc(array: ArrayPhysicsConstraint) -> [^]PhysicsConstraint ---
     array_polygon_create :: proc() -> ArrayPolygon ---
     array_polygon_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayPolygon ---
     array_polygon_dispose :: proc(array: ArrayPolygon) ---
@@ -712,7 +712,7 @@ foreign lib {
     array_polygon_remove_at :: proc(array: ArrayPolygon, in_index: c.size_t) ---
     array_polygon_contains :: proc(array: ArrayPolygon, in_value: Polygon) -> c.bool ---
     array_polygon_index_of :: proc(array: ArrayPolygon, in_value: Polygon) -> c.int ---
-    array_polygon_buffer :: proc(array: ArrayPolygon) -> [^]^Polygon ---
+    array_polygon_buffer :: proc(array: ArrayPolygon) -> [^]Polygon ---
     array_skin_create :: proc() -> ArraySkin ---
     array_skin_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArraySkin ---
     array_skin_dispose :: proc(array: ArraySkin) ---
@@ -727,7 +727,7 @@ foreign lib {
     array_skin_remove_at :: proc(array: ArraySkin, in_index: c.size_t) ---
     array_skin_contains :: proc(array: ArraySkin, in_value: Skin) -> c.bool ---
     array_skin_index_of :: proc(array: ArraySkin, in_value: Skin) -> c.int ---
-    array_skin_buffer :: proc(array: ArraySkin) -> [^]^Skin ---
+    array_skin_buffer :: proc(array: ArraySkin) -> [^]Skin ---
     array_slot_create :: proc() -> ArraySlot ---
     array_slot_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArraySlot ---
     array_slot_dispose :: proc(array: ArraySlot) ---
@@ -742,7 +742,7 @@ foreign lib {
     array_slot_remove_at :: proc(array: ArraySlot, in_index: c.size_t) ---
     array_slot_contains :: proc(array: ArraySlot, in_value: Slot) -> c.bool ---
     array_slot_index_of :: proc(array: ArraySlot, in_value: Slot) -> c.int ---
-    array_slot_buffer :: proc(array: ArraySlot) -> [^]^Slot ---
+    array_slot_buffer :: proc(array: ArraySlot) -> [^]Slot ---
     array_slot_data_create :: proc() -> ArraySlotData ---
     array_slot_data_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArraySlotData ---
     array_slot_data_dispose :: proc(array: ArraySlotData) ---
@@ -757,7 +757,7 @@ foreign lib {
     array_slot_data_remove_at :: proc(array: ArraySlotData, in_index: c.size_t) ---
     array_slot_data_contains :: proc(array: ArraySlotData, in_value: SlotData) -> c.bool ---
     array_slot_data_index_of :: proc(array: ArraySlotData, in_value: SlotData) -> c.int ---
-    array_slot_data_buffer :: proc(array: ArraySlotData) -> [^]^SlotData ---
+    array_slot_data_buffer :: proc(array: ArraySlotData) -> [^]SlotData ---
     array_texture_region_create :: proc() -> ArrayTextureRegion ---
     array_texture_region_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayTextureRegion ---
     array_texture_region_dispose :: proc(array: ArrayTextureRegion) ---
@@ -772,7 +772,7 @@ foreign lib {
     array_texture_region_remove_at :: proc(array: ArrayTextureRegion, in_index: c.size_t) ---
     array_texture_region_contains :: proc(array: ArrayTextureRegion, in_value: TextureRegion) -> c.bool ---
     array_texture_region_index_of :: proc(array: ArrayTextureRegion, in_value: TextureRegion) -> c.int ---
-    array_texture_region_buffer :: proc(array: ArrayTextureRegion) -> [^]^TextureRegion ---
+    array_texture_region_buffer :: proc(array: ArrayTextureRegion) -> [^]TextureRegion ---
     array_timeline_create :: proc() -> ArrayTimeline ---
     array_timeline_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayTimeline ---
     array_timeline_dispose :: proc(array: ArrayTimeline) ---
@@ -787,7 +787,7 @@ foreign lib {
     array_timeline_remove_at :: proc(array: ArrayTimeline, in_index: c.size_t) ---
     array_timeline_contains :: proc(array: ArrayTimeline, in_value: Timeline) -> c.bool ---
     array_timeline_index_of :: proc(array: ArrayTimeline, in_value: Timeline) -> c.int ---
-    array_timeline_buffer :: proc(array: ArrayTimeline) -> [^]^Timeline ---
+    array_timeline_buffer :: proc(array: ArrayTimeline) -> [^]Timeline ---
     array_to_property_create :: proc() -> ArrayToProperty ---
     array_to_property_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayToProperty ---
     array_to_property_dispose :: proc(array: ArrayToProperty) ---
@@ -802,7 +802,7 @@ foreign lib {
     array_to_property_remove_at :: proc(array: ArrayToProperty, in_index: c.size_t) ---
     array_to_property_contains :: proc(array: ArrayToProperty, in_value: ToProperty) -> c.bool ---
     array_to_property_index_of :: proc(array: ArrayToProperty, in_value: ToProperty) -> c.int ---
-    array_to_property_buffer :: proc(array: ArrayToProperty) -> [^]^ToProperty ---
+    array_to_property_buffer :: proc(array: ArrayToProperty) -> [^]ToProperty ---
     array_track_entry_create :: proc() -> ArrayTrackEntry ---
     array_track_entry_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayTrackEntry ---
     array_track_entry_dispose :: proc(array: ArrayTrackEntry) ---
@@ -817,7 +817,7 @@ foreign lib {
     array_track_entry_remove_at :: proc(array: ArrayTrackEntry, in_index: c.size_t) ---
     array_track_entry_contains :: proc(array: ArrayTrackEntry, in_value: TrackEntry) -> c.bool ---
     array_track_entry_index_of :: proc(array: ArrayTrackEntry, in_value: TrackEntry) -> c.int ---
-    array_track_entry_buffer :: proc(array: ArrayTrackEntry) -> [^]^TrackEntry ---
+    array_track_entry_buffer :: proc(array: ArrayTrackEntry) -> [^]TrackEntry ---
     array_update_create :: proc() -> ArrayUpdate ---
     array_update_create_with_capacity :: proc(initial_capacity: c.size_t) -> ArrayUpdate ---
     array_update_dispose :: proc(array: ArrayUpdate) ---
@@ -832,7 +832,7 @@ foreign lib {
     array_update_remove_at :: proc(array: ArrayUpdate, in_index: c.size_t) ---
     array_update_contains :: proc(array: ArrayUpdate, in_value: Update) -> c.bool ---
     array_update_index_of :: proc(array: ArrayUpdate, in_value: Update) -> c.int ---
-    array_update_buffer :: proc(array: ArrayUpdate) -> [^]^Update ---
+    array_update_buffer :: proc(array: ArrayUpdate) -> [^]Update ---
     atlas_dispose :: proc(self: Atlas) ---
     atlas_flip_v :: proc(self: Atlas) ---
     atlas_find_region :: proc(self: Atlas, name: cstring) -> AtlasRegion ---
@@ -1039,10 +1039,10 @@ foreign lib {
     bone_pose_get_world_rotation_y :: proc(self: BonePose) -> c.float ---
     bone_pose_get_world_scale_x :: proc(self: BonePose) -> c.float ---
     bone_pose_get_world_scale_y :: proc(self: BonePose) -> c.float ---
-    bone_pose_world_to_local :: proc(self: BonePose, world_x: c.float, world_y: c.float, out_local_x: [^]^c.float, out_local_y: [^]^c.float) ---
-    bone_pose_local_to_world :: proc(self: BonePose, local_x: c.float, local_y: c.float, out_world_x: [^]^c.float, out_world_y: [^]^c.float) ---
-    bone_pose_world_to_parent :: proc(self: BonePose, world_x: c.float, world_y: c.float, out_parent_x: [^]^c.float, out_parent_y: [^]^c.float) ---
-    bone_pose_parent_to_world :: proc(self: BonePose, parent_x: c.float, parent_y: c.float, out_world_x: [^]^c.float, out_world_y: [^]^c.float) ---
+    bone_pose_world_to_local :: proc(self: BonePose, world_x: c.float, world_y: c.float, out_local_x: [^]c.float, out_local_y: [^]c.float) ---
+    bone_pose_local_to_world :: proc(self: BonePose, local_x: c.float, local_y: c.float, out_world_x: [^]c.float, out_world_y: [^]c.float) ---
+    bone_pose_world_to_parent :: proc(self: BonePose, world_x: c.float, world_y: c.float, out_parent_x: [^]c.float, out_parent_y: [^]c.float) ---
+    bone_pose_parent_to_world :: proc(self: BonePose, parent_x: c.float, parent_y: c.float, out_world_x: [^]c.float, out_world_y: [^]c.float) ---
     bone_pose_world_to_local_rotation :: proc(self: BonePose, world_rotation: c.float) -> c.float ---
     bone_pose_local_to_world_rotation :: proc(self: BonePose, local_rotation: c.float) -> c.float ---
     bone_pose_rotate_world :: proc(self: BonePose, degrees: c.float) ---
@@ -1120,7 +1120,7 @@ foreign lib {
     bounding_box_attachment_get_rtti :: proc(self: BoundingBoxAttachment) -> Rtti ---
     bounding_box_attachment_get_color :: proc(self: BoundingBoxAttachment) -> Color ---
     bounding_box_attachment_copy :: proc(self: BoundingBoxAttachment) -> Attachment ---
-    bounding_box_attachment_compute_world_vertices_1 :: proc(self: BoundingBoxAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    bounding_box_attachment_compute_world_vertices_1 :: proc(self: BoundingBoxAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     bounding_box_attachment_compute_world_vertices_2 :: proc(self: BoundingBoxAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     bounding_box_attachment_get_id :: proc(self: BoundingBoxAttachment) -> c.int ---
     bounding_box_attachment_get_bones :: proc(self: BoundingBoxAttachment) -> ArrayInt ---
@@ -1663,7 +1663,7 @@ foreign lib {
     clipping_attachment_set_inverse :: proc(self: ClippingAttachment, inverse: c.bool) ---
     clipping_attachment_get_color :: proc(self: ClippingAttachment) -> Color ---
     clipping_attachment_copy :: proc(self: ClippingAttachment) -> Attachment ---
-    clipping_attachment_compute_world_vertices_1 :: proc(self: ClippingAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    clipping_attachment_compute_world_vertices_1 :: proc(self: ClippingAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     clipping_attachment_compute_world_vertices_2 :: proc(self: ClippingAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     clipping_attachment_get_id :: proc(self: ClippingAttachment) -> c.int ---
     clipping_attachment_get_bones :: proc(self: ClippingAttachment) -> ArrayInt ---
@@ -1884,7 +1884,7 @@ foreign lib {
     event_timeline_rtti :: proc() -> Rtti ---
     from_property_dispose :: proc(self: FromProperty) ---
     from_property_get_rtti :: proc(self: FromProperty) -> Rtti ---
-    from_property_value :: proc(self: FromProperty, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_property_value :: proc(self: FromProperty, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_property_rtti :: proc() -> Rtti ---
     from_property_get__offset :: proc(self: FromProperty) -> c.float ---
     from_property_set__offset :: proc(self: FromProperty, value: c.float) ---
@@ -1893,32 +1893,32 @@ foreign lib {
     from_rotate_create :: proc() -> FromRotate ---
     from_rotate_dispose :: proc(self: FromRotate) ---
     from_rotate_get_rtti :: proc(self: FromRotate) -> Rtti ---
-    from_rotate_value :: proc(self: FromRotate, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_rotate_value :: proc(self: FromRotate, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_rotate_rtti :: proc() -> Rtti ---
     from_scale_x_create :: proc() -> FromScaleX ---
     from_scale_x_dispose :: proc(self: FromScaleX) ---
     from_scale_x_get_rtti :: proc(self: FromScaleX) -> Rtti ---
-    from_scale_x_value :: proc(self: FromScaleX, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_scale_x_value :: proc(self: FromScaleX, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_scale_x_rtti :: proc() -> Rtti ---
     from_scale_y_create :: proc() -> FromScaleY ---
     from_scale_y_dispose :: proc(self: FromScaleY) ---
     from_scale_y_get_rtti :: proc(self: FromScaleY) -> Rtti ---
-    from_scale_y_value :: proc(self: FromScaleY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_scale_y_value :: proc(self: FromScaleY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_scale_y_rtti :: proc() -> Rtti ---
     from_shear_y_create :: proc() -> FromShearY ---
     from_shear_y_dispose :: proc(self: FromShearY) ---
     from_shear_y_get_rtti :: proc(self: FromShearY) -> Rtti ---
-    from_shear_y_value :: proc(self: FromShearY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_shear_y_value :: proc(self: FromShearY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_shear_y_rtti :: proc() -> Rtti ---
     from_x_create :: proc() -> FromX ---
     from_x_dispose :: proc(self: FromX) ---
     from_x_get_rtti :: proc(self: FromX) -> Rtti ---
-    from_x_value :: proc(self: FromX, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_x_value :: proc(self: FromX, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_x_rtti :: proc() -> Rtti ---
     from_y_create :: proc() -> FromY ---
     from_y_dispose :: proc(self: FromY) ---
     from_y_get_rtti :: proc(self: FromY) -> Rtti ---
-    from_y_value :: proc(self: FromY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]^c.float) -> c.float ---
+    from_y_value :: proc(self: FromY, skeleton: Skeleton, source: BonePose, local: c.bool, offsets: [^]c.float) -> c.float ---
     from_y_rtti :: proc() -> Rtti ---
     ik_constraint_create :: proc(data: IkConstraintData, skeleton: Skeleton) -> IkConstraint ---
     ik_constraint_dispose :: proc(self: IkConstraint) ---
@@ -2023,7 +2023,7 @@ foreign lib {
     mesh_attachment_create :: proc(name: cstring, sequence: Sequence) -> MeshAttachment ---
     mesh_attachment_dispose :: proc(self: MeshAttachment) ---
     mesh_attachment_get_rtti :: proc(self: MeshAttachment) -> Rtti ---
-    mesh_attachment_compute_world_vertices_1 :: proc(self: MeshAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    mesh_attachment_compute_world_vertices_1 :: proc(self: MeshAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     mesh_attachment_compute_world_vertices_2 :: proc(self: MeshAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     mesh_attachment_get_region_u_vs :: proc(self: MeshAttachment) -> ArrayFloat ---
     mesh_attachment_set_region_u_vs :: proc(self: MeshAttachment, in_value: ArrayFloat) ---
@@ -2076,7 +2076,7 @@ foreign lib {
     path_attachment_set_constant_speed :: proc(self: PathAttachment, in_value: c.bool) ---
     path_attachment_get_color :: proc(self: PathAttachment) -> Color ---
     path_attachment_copy :: proc(self: PathAttachment) -> Attachment ---
-    path_attachment_compute_world_vertices_1 :: proc(self: PathAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    path_attachment_compute_world_vertices_1 :: proc(self: PathAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     path_attachment_compute_world_vertices_2 :: proc(self: PathAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     path_attachment_get_id :: proc(self: PathAttachment) -> c.int ---
     path_attachment_get_bones :: proc(self: PathAttachment) -> ArrayInt ---
@@ -2547,7 +2547,7 @@ foreign lib {
     point_attachment_get_rotation :: proc(self: PointAttachment) -> c.float ---
     point_attachment_set_rotation :: proc(self: PointAttachment, in_value: c.float) ---
     point_attachment_get_color :: proc(self: PointAttachment) -> Color ---
-    point_attachment_compute_world_position :: proc(self: PointAttachment, bone: BonePose, ox: [^]^c.float, oy: [^]^c.float) ---
+    point_attachment_compute_world_position :: proc(self: PointAttachment, bone: BonePose, ox: [^]c.float, oy: [^]c.float) ---
     point_attachment_compute_world_rotation :: proc(self: PointAttachment, bone: BonePose) -> c.float ---
     point_attachment_copy :: proc(self: PointAttachment) -> Attachment ---
     point_attachment_get_name :: proc(self: PointAttachment) -> cstring ---
@@ -2581,7 +2581,7 @@ foreign lib {
     region_attachment_create :: proc(name: cstring, sequence: Sequence) -> RegionAttachment ---
     region_attachment_dispose :: proc(self: RegionAttachment) ---
     region_attachment_get_rtti :: proc(self: RegionAttachment) -> Rtti ---
-    region_attachment_compute_world_vertices_1 :: proc(self: RegionAttachment, slot: Slot, vertex_offsets: [^]^c.float, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    region_attachment_compute_world_vertices_1 :: proc(self: RegionAttachment, slot: Slot, vertex_offsets: [^]c.float, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     region_attachment_compute_world_vertices_2 :: proc(self: RegionAttachment, slot: Slot, vertex_offsets: ArrayFloat, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     region_attachment_get_offsets :: proc(self: RegionAttachment, pose: SlotPose) -> ArrayFloat ---
     region_attachment_get_x :: proc(self: RegionAttachment) -> c.float ---
@@ -2616,12 +2616,12 @@ foreign lib {
     region_attachment_dereference :: proc(self: RegionAttachment) ---
     region_attachment_rtti :: proc() -> Rtti ---
     render_command_dispose :: proc(self: RenderCommand) ---
-    render_command_get_positions :: proc(self: RenderCommand) -> [^]^c.float ---
-    render_command_get_uvs :: proc(self: RenderCommand) -> [^]^c.float ---
-    render_command_get_colors :: proc(self: RenderCommand) -> [^]^c.uint32_t ---
-    render_command_get_dark_colors :: proc(self: RenderCommand) -> [^]^c.uint32_t ---
+    render_command_get_positions :: proc(self: RenderCommand) -> [^]c.float ---
+    render_command_get_uvs :: proc(self: RenderCommand) -> [^]c.float ---
+    render_command_get_colors :: proc(self: RenderCommand) -> [^]c.uint32_t ---
+    render_command_get_dark_colors :: proc(self: RenderCommand) -> [^]c.uint32_t ---
     render_command_get_num_vertices :: proc(self: RenderCommand) -> c.int32_t ---
-    render_command_get_indices :: proc(self: RenderCommand) -> [^]^c.uint16_t ---
+    render_command_get_indices :: proc(self: RenderCommand) -> [^]c.uint16_t ---
     render_command_get_num_indices :: proc(self: RenderCommand) -> c.int32_t ---
     render_command_get_blend_mode :: proc(self: RenderCommand) -> BlendMode ---
     render_command_get_texture :: proc(self: RenderCommand) -> rawptr ---
@@ -2937,8 +2937,8 @@ foreign lib {
     skeleton_set_attachment :: proc(self: Skeleton, slot_name: cstring, placeholder_name: cstring) ---
     skeleton_get_constraints :: proc(self: Skeleton) -> ArrayConstraint ---
     skeleton_get_physics_constraints :: proc(self: Skeleton) -> ArrayPhysicsConstraint ---
-    skeleton_get_bounds_1 :: proc(self: Skeleton, out_x: [^]^c.float, out_y: [^]^c.float, out_width: [^]^c.float, out_height: [^]^c.float) ---
-    skeleton_get_bounds_2 :: proc(self: Skeleton, out_x: [^]^c.float, out_y: [^]^c.float, out_width: [^]^c.float, out_height: [^]^c.float, out_vertex_buffer: ArrayFloat, clipping: SkeletonClipping) ---
+    skeleton_get_bounds_1 :: proc(self: Skeleton, out_x: [^]c.float, out_y: [^]c.float, out_width: [^]c.float, out_height: [^]c.float) ---
+    skeleton_get_bounds_2 :: proc(self: Skeleton, out_x: [^]c.float, out_y: [^]c.float, out_width: [^]c.float, out_height: [^]c.float, out_vertex_buffer: ArrayFloat, clipping: SkeletonClipping) ---
     skeleton_get_color :: proc(self: Skeleton) -> Color ---
     skeleton_set_color_1 :: proc(self: Skeleton, color: Color) ---
     skeleton_set_color_2 :: proc(self: Skeleton, r: c.float, g: c.float, b: c.float, a: c.float) ---
@@ -2952,7 +2952,7 @@ foreign lib {
     skeleton_get_y :: proc(self: Skeleton) -> c.float ---
     skeleton_set_y :: proc(self: Skeleton, in_value: c.float) ---
     skeleton_set_position :: proc(self: Skeleton, x: c.float, y: c.float) ---
-    skeleton_get_position :: proc(self: Skeleton, x: [^]^c.float, y: [^]^c.float) ---
+    skeleton_get_position :: proc(self: Skeleton, x: [^]c.float, y: [^]c.float) ---
     skeleton_get_wind_x :: proc(self: Skeleton) -> c.float ---
     skeleton_set_wind_x :: proc(self: Skeleton, wind_x: c.float) ---
     skeleton_get_wind_y :: proc(self: Skeleton) -> c.float ---
@@ -2969,7 +2969,7 @@ foreign lib {
     skeleton_binary_create :: proc(atlas: Atlas) -> SkeletonBinary ---
     skeleton_binary_create2 :: proc(attachment_loader: AttachmentLoader, owns_loader: c.bool) -> SkeletonBinary ---
     skeleton_binary_dispose :: proc(self: SkeletonBinary) ---
-    skeleton_binary_read_skeleton_data :: proc(self: SkeletonBinary, binary: [^]^c.uchar, length: c.int) -> SkeletonData ---
+    skeleton_binary_read_skeleton_data :: proc(self: SkeletonBinary, binary: [^]c.uchar, length: c.int) -> SkeletonData ---
     skeleton_binary_read_skeleton_data_file :: proc(self: SkeletonBinary, path: cstring) -> SkeletonData ---
     skeleton_binary_set_scale :: proc(self: SkeletonBinary, scale: c.float) ---
     skeleton_binary_get_error :: proc(self: SkeletonBinary) -> cstring ---
@@ -2998,8 +2998,8 @@ foreign lib {
     skeleton_clipping_clip_start :: proc(self: SkeletonClipping, skeleton: Skeleton, slot: Slot, clip: ClippingAttachment) -> c.size_t ---
     skeleton_clipping_clip_end_1 :: proc(self: SkeletonClipping, slot: Slot) ---
     skeleton_clipping_clip_end_2 :: proc(self: SkeletonClipping) ---
-    skeleton_clipping_clip_triangles_1 :: proc(self: SkeletonClipping, vertices: [^]^c.float, triangles: [^]^c.ushort, triangles_length: c.size_t) -> c.bool ---
-    skeleton_clipping_clip_triangles_2 :: proc(self: SkeletonClipping, vertices: [^]^c.float, triangles: [^]^c.ushort, triangles_length: c.size_t, uvs: [^]^c.float, stride: c.size_t) -> c.bool ---
+    skeleton_clipping_clip_triangles_1 :: proc(self: SkeletonClipping, vertices: [^]c.float, triangles: [^]c.ushort, triangles_length: c.size_t) -> c.bool ---
+    skeleton_clipping_clip_triangles_2 :: proc(self: SkeletonClipping, vertices: [^]c.float, triangles: [^]c.ushort, triangles_length: c.size_t, uvs: [^]c.float, stride: c.size_t) -> c.bool ---
     skeleton_clipping_clip_triangles_3 :: proc(self: SkeletonClipping, vertices: ArrayFloat, triangles: ArrayUnsignedShort, uvs: ArrayFloat, stride: c.size_t) -> c.bool ---
     skeleton_clipping_is_clipping :: proc(self: SkeletonClipping) -> c.bool ---
     skeleton_clipping_get_clipped_vertices :: proc(self: SkeletonClipping) -> ArrayFloat ---
@@ -3547,7 +3547,7 @@ foreign lib {
     update_rtti :: proc() -> Rtti ---
     vertex_attachment_dispose :: proc(self: VertexAttachment) ---
     vertex_attachment_get_rtti :: proc(self: VertexAttachment) -> Rtti ---
-    vertex_attachment_compute_world_vertices_1 :: proc(self: VertexAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]^c.float, offset: c.size_t, stride: c.size_t) ---
+    vertex_attachment_compute_world_vertices_1 :: proc(self: VertexAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: [^]c.float, offset: c.size_t, stride: c.size_t) ---
     vertex_attachment_compute_world_vertices_2 :: proc(self: VertexAttachment, skeleton: Skeleton, slot: Slot, start: c.size_t, count: c.size_t, world_vertices: ArrayFloat, offset: c.size_t, stride: c.size_t) ---
     vertex_attachment_get_id :: proc(self: VertexAttachment) -> c.int ---
     vertex_attachment_get_bones :: proc(self: VertexAttachment) -> ArrayInt ---
