@@ -65,8 +65,6 @@ raylib_texture_loader :: proc "c" (path: cstring) -> rawptr {
 	// which will nuke the address. These are tiny structures
 	// anyway, not the real texture.
 	textures[path] = rl.LoadTexture(path)
-	rl.SetTextureFilter(textures[path], .TRILINEAR)
-	rl.SetTextureWrap(textures[path], .REPEAT)
 
 	return &textures[path]
 }

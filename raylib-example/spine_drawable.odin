@@ -111,19 +111,35 @@ spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
 			vertex.color.b = u8(colors[i] >> 08)
 			vertex.color.a = u8(colors[i] >> 00)
 
+			// TODO:
+			//   make this not dynamic
+			//   i did try, but, it didn't draw properly... my fault somehow
 			append(&vertex_buffer, vertex)
 		}
 
-		// implement the render command in raylib
-		set_blend_mode(blend_mode, false)
-		defer rl.EndBlendMode()
-
-		// TODO: figure out if I'm rendering things backwards -- should this be something I have to do here?
+		// TODO:
+		//   figure out if I'm rendering things backwards?
+		//   should this be something I have to do here?
 		rlgl.DisableBackfaceCulling()
 		defer rlgl.EnableBackfaceCulling()
 
 		rlgl.Begin(rlgl.TRIANGLES)
 		defer rlgl.End()
+
+		// TODO:
+		//   should be setting based on the spine settings?
+		//   why does .BILINEAR have rough edges? scaling?
+		//   performance issues setting the texture in a hot draw loop?
+		rl.SetTextureFilter(texture^, .POINT)
+
+		// TODO:
+		//   should be setting based on the spine settings?
+		rl.SetTextureWrap(texture^, .CLAMP)
+
+		// TODO:
+		//   should pma come from spine somehow?
+		set_blend_mode(blend_mode, false)
+		defer rl.EndBlendMode()
 
 		rlgl.SetTexture(texture.id)
 
@@ -134,6 +150,10 @@ spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
 			rlgl.Vertex2f(position.x + v.position[0], position.y + v.position[1])
 		}
 
+		// TODO:
+		//   figure out why i have to do this?
+		//   is this a performance hit?
+		//   how do i track draw calls with raylib?
 		rlgl.DrawRenderBatchActive()
 
 		// grab the next render command
