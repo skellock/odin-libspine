@@ -8,7 +8,6 @@ import rlgl "vendor:raylib/rlgl"
 renderer: spine.SkeletonRenderer
 
 vertex_buffer: [dynamic]RaylibVertex
-index_buffer: [dynamic]u16
 
 RaylibVertex :: struct {
 	position:   rl.Vector2,
@@ -25,7 +24,6 @@ SpineDrawable :: struct {
 
 spine_drawable_nuke_buffers :: proc() {
 	delete(vertex_buffer)
-	delete(index_buffer)
 }
 
 spine_drawable_create :: proc(spine_skeleton_data: ^SpineSkeletonData) -> SpineDrawable {
@@ -84,12 +82,11 @@ spine_drawable_update :: proc(self: ^SpineDrawable, dt: f32) {
 	spine.skeleton_drawable_update(self.skeleton_drawable, dt)
 }
 
-spine_drawable_draw :: proc(self: ^SpineDrawable) {
+spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
 	cmd := spine.skeleton_renderer_render(renderer, self.skeleton)
 
 	for cmd != nil {
 		clear_dynamic_array(&vertex_buffer)
-		clear_dynamic_array(&index_buffer)
 
 		// grab the details of the render command
 		num_vertices := spine.render_command_get_num_vertices(cmd)
@@ -101,7 +98,6 @@ spine_drawable_draw :: proc(self: ^SpineDrawable) {
 		texture := cast(^rl.Texture)spine.render_command_get_texture(cmd)
 		blend_mode := spine.render_command_get_blend_mode(cmd)
 
-
 		// fill the raylib vertices
 		vertex: RaylibVertex
 		for i in 0 ..< num_vertices {
@@ -110,18 +106,12 @@ spine_drawable_draw :: proc(self: ^SpineDrawable) {
 			vertex.tex_coords.x = uvs[i * 2]
 			vertex.tex_coords.y = uvs[i * 2 + 1]
 
-			color := colors[i]
-			vertex.color.r = u8(color >> 24) & 0xff
-			vertex.color.g = u8(color >> 16) & 0xff
-			vertex.color.b = u8(color >> 08) & 0xff
-			vertex.color.a = u8(color >> 00) & 0xff
+			vertex.color.r = u8(colors[i] >> 24)
+			vertex.color.g = u8(colors[i] >> 16)
+			vertex.color.b = u8(colors[i] >> 08)
+			vertex.color.a = u8(colors[i] >> 00)
 
 			append(&vertex_buffer, vertex)
-		}
-
-		// copy the indices
-		for i in 0 ..< num_indices {
-			append(&index_buffer, command_indices[i])
 		}
 
 		// implement the render command in raylib
@@ -134,14 +124,16 @@ spine_drawable_draw :: proc(self: ^SpineDrawable) {
 
 		rlgl.Begin(rlgl.TRIANGLES)
 		defer rlgl.End()
+
 		rlgl.SetTexture(texture.id)
 
-		for idx in index_buffer {
+		for idx in command_indices[0:num_indices] {
 			v := vertex_buffer[idx]
 			rlgl.Color4ub(v.color.r, v.color.g, v.color.b, v.color.a)
 			rlgl.TexCoord2f(v.tex_coords[0], v.tex_coords[1])
 			rlgl.Vertex2f(position.x + v.position[0], position.y + v.position[1])
 		}
+
 		rlgl.DrawRenderBatchActive()
 
 		// grab the next render command
