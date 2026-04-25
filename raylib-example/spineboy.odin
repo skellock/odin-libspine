@@ -126,7 +126,7 @@ spine_boy_update :: proc(self: ^SpineBoy, dt: f32, mouse_world_position: rl.Vect
 }
 
 spine_boy_draw :: proc(self: ^SpineBoy) {
-	spine_drawable_draw(&self.spine_drawable, {0, 0})
+	spine_drawable_draw(&self.spine_drawable)
 }
 
 spine_boy_destroy :: proc(self: ^SpineBoy) {

@@ -87,7 +87,7 @@ spine_drawable_update :: proc(self: ^SpineDrawable, dt: f32) {
 	spine.skeleton_drawable_update(self.skeleton_drawable, dt)
 }
 
-spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
+spine_drawable_draw :: proc(self: ^SpineDrawable) {
 	cmd := spine.skeleton_renderer_render(renderer, self.skeleton)
 
 	for cmd != nil {
@@ -99,7 +99,7 @@ spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
 		positions := spine.render_command_get_positions(cmd)
 		uvs := spine.render_command_get_uvs(cmd)
 		colors := spine.render_command_get_colors(cmd)
-		command_indices := spine.render_command_get_indices(cmd)
+		indices := spine.render_command_get_indices(cmd)
 		texture := cast(^rl.Texture)spine.render_command_get_texture(cmd)
 		blend_mode := spine.render_command_get_blend_mode(cmd)
 
@@ -123,43 +123,44 @@ spine_drawable_draw :: proc(self: ^SpineDrawable, position: rl.Vector2) {
 		}
 
 		// TODO:
-		//   figure out if I'm rendering things backwards?
-		//   should this be something I have to do here?
-		rlgl.DisableBackfaceCulling()
-		defer rlgl.EnableBackfaceCulling()
+		//   should pma come from spine somehow?
+		set_blend_mode(blend_mode, false)
 
 		rlgl.Begin(rlgl.TRIANGLES)
-		defer rlgl.End()
+		rlgl.SetTexture(texture.id)
 
 		// TODO:
 		//   should be setting based on the spine settings?
 		//   why does .BILINEAR have rough edges? scaling?
 		//   performance issues setting the texture in a hot draw loop?
-		rl.SetTextureFilter(texture^, .POINT)
+		// rl.SetTextureFilter(texture^, .POINT)
 
 		// TODO:
 		//   should be setting based on the spine settings?
-		rl.SetTextureWrap(texture^, .CLAMP)
+		// rl.SetTextureWrap(texture^, .CLAMP)
 
-		// TODO:
-		//   should pma come from spine somehow?
-		set_blend_mode(blend_mode, false)
-		defer rl.EndBlendMode()
+		for i in 0 ..< num_indices / 3 {
+			// draw our triangles in this order because RayLib is y-down
+			// so we've set bone_set_y_down(true) in Spine.
+			v1 := vertex_buffer[indices[i * 3 + 0]]
+			v2 := vertex_buffer[indices[i * 3 + 2]]
+			v3 := vertex_buffer[indices[i * 3 + 1]]
 
-		rlgl.SetTexture(texture.id)
+			rlgl.Color4ub(v1.color.r, v1.color.g, v1.color.b, v1.color.a)
+			rlgl.TexCoord2f(v1.tex_coords[0], v1.tex_coords[1])
+			rlgl.Vertex2f(v1.position[0], v1.position[1])
 
-		for idx in command_indices[0:num_indices] {
-			v := vertex_buffer[idx]
-			rlgl.Color4ub(v.color.r, v.color.g, v.color.b, v.color.a)
-			rlgl.TexCoord2f(v.tex_coords[0], v.tex_coords[1])
-			rlgl.Vertex2f(position.x + v.position[0], position.y + v.position[1])
+			rlgl.Color4ub(v2.color.r, v2.color.g, v2.color.b, v2.color.a)
+			rlgl.TexCoord2f(v2.tex_coords[0], v2.tex_coords[1])
+			rlgl.Vertex2f(v2.position[0], v2.position[1])
+
+			rlgl.Color4ub(v3.color.r, v3.color.g, v3.color.b, v3.color.a)
+			rlgl.TexCoord2f(v3.tex_coords[0], v3.tex_coords[1])
+			rlgl.Vertex2f(v3.position[0], v3.position[1])
 		}
 
-		// TODO:
-		//   figure out why i have to do this?
-		//   is this a performance hit?
-		//   how do i track draw calls with raylib?
-		rlgl.DrawRenderBatchActive()
+		rlgl.End()
+		rl.EndBlendMode()
 
 		// grab the next render command
 		cmd = spine.render_command_get_next(cmd)
