@@ -153,7 +153,7 @@ spine_drawable_destroy :: proc(self: ^SpineDrawable) {
 }
 
 @(private = "file")
-set_blend_mode :: proc(blend_mode: spine.BlendMode, premultiplied_alpha: bool) {
+set_blend_mode :: #force_inline proc(blend_mode: spine.BlendMode, premultiplied_alpha: bool) {
 	// set the blend mode
 	if !premultiplied_alpha {
 		switch blend_mode {
