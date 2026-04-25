@@ -1,8 +1,7 @@
-# Odin Spine Runtime
+# odin-libspine
 
-[Odin](https://odin-lang.org) language bindings for the [Spine 4.3](https://esotericsoftware.com) C runtime. 
+[Odin](https://odin-lang.org) language bindings for the [Spine 4.3](https://esotericsoftware.com) C runtime.
 Used for crazy awesome 2d animations in games.
-
 
 ## Caveat Emptor / Momento Mori
 
@@ -10,23 +9,21 @@ Used for crazy awesome 2d animations in games.
 
 Spine 4.3 is currently in beta, so consider this binding to be super duper beta.
 
-In Spine 4.2, they had a real C library, but it became a bit much for them to maintain. 
+In Spine 4.2, they had a real C library, but it became a bit much for them to maintain.
 In 4.3 they code-generated their C library from C++ which makes `libspine` have a really chatty API.
-
 
 ## How To Use
 
-Copy the `libspine` directory into your own project. 
+Copy the `libspine` directory into your own project.
 
-This comes with the binaries you need to include as a static library (currently macOS only right now). 
+This comes with the binaries you need to include as a static library (currently macOS only right now).
 I've built the static libraries in release mode.
 
 You don't need to run the convert.rb script.
 
-
 ## Convert
 
-This script `convert.rb` will generate the Odin bindings. 
+This script `convert.rb` will generate the Odin bindings.
 Esoteric has code generated their C bindings, so it's straight forward for us to codegen the Odin bindings from that.
 It's written in Ruby. We love all languages around here.
 
@@ -44,7 +41,6 @@ ruby convert.rb <PATH_TO_THE_YOUR_SPINE_RUNTIME_REPO>
 ## Contributing
 
 Yes please!
-
 
 ## License
 
