@@ -5,6 +5,8 @@ Used for crazy awesome 2d animations in games.
 
 <img src="screenshot-1.png" />
 
+<img src="demo.gif" alt="Potato quality" />
+
 ## Caveat Emptor / Momento Mori
 
 🚧 This project is dangerously under construction. 🚧
