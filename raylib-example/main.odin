@@ -33,7 +33,7 @@ main :: proc() {
 	spine.bone_set_y_down(true)
 
 	// setup raylib
-	rl.SetConfigFlags({.MSAA_4X_HINT, .WINDOW_HIGHDPI})
+	// rl.SetConfigFlags({.MSAA_4X_HINT, .WINDOW_HIGHDPI})
 	rl.SetTargetFPS(120)
 
 	// setup window
