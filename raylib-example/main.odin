@@ -1,12 +1,12 @@
 package raylib_example
 
+import spine "../libspine"
 import "core:log"
 import "core:mem"
 import rl "vendor:raylib"
 
-SCREEN_WIDTH := 1920
-SCREEN_HEIGHT := 1080
-
+SCREEN_WIDTH := i32(1920)
+SCREEN_HEIGHT := i32(1080)
 
 tracking_allocator: mem.Tracking_Allocator
 main :: proc() {
@@ -30,22 +30,33 @@ main :: proc() {
 		}
 	}
 
+	spine.bone_set_y_down(true)
+
 	// setup raylib
 	rl.SetConfigFlags({.MSAA_4X_HINT, .WINDOW_HIGHDPI})
 	rl.SetTargetFPS(120)
 
 	// setup window
-	rl.InitWindow(i32(SCREEN_WIDTH), i32(SCREEN_HEIGHT), "Game")
+	rl.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Odin + RayLib + Spine")
 	defer rl.CloseWindow()
 
+	DEFAULT_CAMERA_TARGET := rl.Vector2{0, 0}
+	DEFAULT_CAMERA_OFFSET := rl.Vector2{cast(f32)SCREEN_WIDTH / 2.0, cast(f32)SCREEN_HEIGHT / 2.0}
+	DEFAULT_CAMERA_ZOOM := f32(1)
+	DEFAULT_CAMERA_ROTATION := f32(0)
+
 	// setup the camera
-	camera_target := rl.Vector2{0.0, 0.0}
-	camera_offset := rl.Vector2{cast(f32)SCREEN_WIDTH / 2.0, cast(f32)SCREEN_HEIGHT / 2.0}
-	camera_rotation := f32(0)
-	camera_zoom := f32(1)
-	camera := rl.Camera2D{camera_offset, camera_target, camera_rotation, camera_zoom}
+	camera := rl.Camera2D {
+		DEFAULT_CAMERA_OFFSET,
+		DEFAULT_CAMERA_TARGET,
+		DEFAULT_CAMERA_ROTATION,
+		DEFAULT_CAMERA_ZOOM,
+	}
+
+	DEFAULT_SPINE_BOY_POS := rl.Vector2{-600, 400}
 
 	spine_boy := spine_boy_create()
+	spine_boy.pos = DEFAULT_SPINE_BOY_POS
 	defer spine_boy_destroy(&spine_boy)
 
 	defer spine_drawable_nuke_buffers()
@@ -55,13 +66,24 @@ main :: proc() {
 		// free the temp allocator each frame
 		defer mem.free_all(context.temp_allocator)
 
-		// where is our mouse in camera coordinates?
-		point := rl.GetScreenToWorld2D(rl.GetMousePosition(), camera)
+		// Where is our mouse in camera coordinates? Used for aiming.
+		mouse_world_position := rl.GetScreenToWorld2D(rl.GetMousePosition(), camera)
 
 		wheel := rl.GetMouseWheelMove()
 		if wheel != 0 {
-			camera.zoom += wheel * 0.01
+			camera.zoom += wheel * 0.005
 			camera.zoom = max(min(camera.zoom, 2), 0.1)
+		}
+
+		// reset
+		if rl.IsKeyDown(.ENTER) {
+			camera = rl.Camera2D {
+				DEFAULT_CAMERA_OFFSET,
+				DEFAULT_CAMERA_TARGET,
+				DEFAULT_CAMERA_ROTATION,
+				DEFAULT_CAMERA_ZOOM,
+			}
+			spine_boy.pos = DEFAULT_SPINE_BOY_POS
 		}
 
 		// start drawing
@@ -69,7 +91,7 @@ main :: proc() {
 		defer rl.EndDrawing()
 		rl.ClearBackground(rl.DARKGRAY)
 
-		spine_boy_update(&spine_boy, rl.GetFrameTime())
+		spine_boy_update(&spine_boy, rl.GetFrameTime(), mouse_world_position)
 
 		// draw everything within the camera scope
 		{

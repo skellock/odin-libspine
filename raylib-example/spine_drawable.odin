@@ -1,6 +1,7 @@
 package raylib_example
 
 import spine "../libspine"
+import "core:c"
 import "core:strings"
 import rl "vendor:raylib"
 import rlgl "vendor:raylib/rlgl"
@@ -60,6 +61,10 @@ spine_drawable_animate :: proc(
 		strings.clone_to_cstring(animation_name, context.temp_allocator),
 		loop,
 	)
+}
+
+spine_drawable_animate_clear :: proc(self: ^SpineDrawable, track: int = 0, mix: f32 = 0.25) {
+	spine.animation_state_set_empty_animation(self.animation_state, c.size_t(track), mix)
 }
 
 spine_drawable_animate_add :: proc(
