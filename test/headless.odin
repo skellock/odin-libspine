@@ -15,7 +15,7 @@ headless_texture_loader :: proc "c" (path: cstring) -> rawptr {
 	return rawptr(nil)
 }
 
-header_texture_unloader :: proc "c" (texture: rawptr) {
+headless_texture_unloader :: proc "c" (texture: rawptr) {
 }
 
 indent_level := 0
@@ -138,7 +138,7 @@ main :: proc() {
 		atlas_raw,
 		strings.clone_to_cstring(atlas_dir, context.temp_allocator),
 		headless_texture_loader,
-		header_texture_unloader,
+		headless_texture_unloader,
 	)
 	atlas_result_error := spine.atlas_result_get_error(atlas_result)
 	if atlas_result_error != nil {
