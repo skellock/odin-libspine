@@ -20,5 +20,7 @@
 - [ ] reconcile pre-multiplied alpha between the spine atlas and raylib texture
 - [ ] reconcile texture filtering between the spine atlas and raylib texture
 - [ ] reconcile texture wrap mode between the spine atlas and raylib texture
-- [ ] figure out why I have to disable backface culling for raylib
+- [x] figure out why I have to disable backface culling for raylib
 - [ ] don't use dynamic array for collecting vertices
+- [x] manual bone manipulation example
+- [ ] hook into spine events
