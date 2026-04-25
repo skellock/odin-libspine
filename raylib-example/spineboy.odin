@@ -39,7 +39,7 @@ spine_boy_update :: proc(self: ^SpineBoy, dt: f32) {
 }
 
 spine_boy_draw :: proc(self: ^SpineBoy) {
-	spine_drawable_draw(&self.spine_drawable)
+	spine_drawable_draw(&self.spine_drawable, {0, 300})
 }
 
 spine_boy_destroy :: proc(self: ^SpineBoy) {

@@ -17,7 +17,6 @@ RaylibVertex :: struct {
 }
 
 SpineDrawable :: struct {
-	pos:                  rl.Vector2,
 	skeleton:             spine.Skeleton,
 	skeleton_drawable:    spine.SkeletonDrawable,
 	animation_state_data: spine.AnimationStateData,
@@ -44,7 +43,6 @@ spine_drawable_create :: proc(spine_skeleton_data: ^SpineSkeletonData) -> SpineD
 	spine.animation_state_set_animation_1(anim_state, 0, "walk", true)
 
 	return SpineDrawable {
-		pos = {0, 300},
 		skeleton = skeleton,
 		skeleton_drawable = drawable,
 		animation_state_data = anim_state_data,
@@ -88,7 +86,6 @@ spine_drawable_update :: proc(self: ^SpineDrawable, dt: f32) {
 
 spine_drawable_draw :: proc(self: ^SpineDrawable) {
 	cmd := spine.skeleton_renderer_render(renderer, self.skeleton)
-	position := self.pos
 
 	for cmd != nil {
 		clear_dynamic_array(&vertex_buffer)
