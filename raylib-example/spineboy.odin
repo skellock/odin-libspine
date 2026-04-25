@@ -13,7 +13,7 @@ SpineBoy :: struct {
 }
 
 spine_boy_create :: proc() -> SpineBoy {
-	atlas := spine_atlas_create("./samples/spineboy/export/spineboy.atlas")
+	atlas := spine_atlas_create("./samples/spineboy/export/spineboy-pro.atlas")
 	data := spine_skeleton_data_create("./samples/spineboy/export/spineboy-pro.json", &atlas)
 	drawable := spine_drawable_create(&data)
 	spine.skeleton_set_scale(drawable.skeleton, 0.5, 0.5)
