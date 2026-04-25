@@ -128,16 +128,12 @@ spine_drawable_draw :: proc(self: ^SpineDrawable) {
 		set_blend_mode(blend_mode, false)
 		defer rl.EndBlendMode()
 
-		rlgl.PushMatrix()
-		defer rlgl.PopMatrix()
-
 		rlgl.DisableBackfaceCulling()
 		defer rlgl.EnableBackfaceCulling()
 
 		rlgl.Begin(rlgl.TRIANGLES)
 		defer rlgl.End()
 		rlgl.SetTexture(texture.id)
-		defer rlgl.SetTexture(0)
 
 		for idx in index_buffer {
 			v := vertex_buffer[idx]
