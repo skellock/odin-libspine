@@ -28,7 +28,7 @@ spine_boy_update :: proc(self: ^SpineBoy, dt: f32) {
 	} else if rl.IsKeyPressed(.D) {
 		spine_drawable_animate(&self.spine_drawable, "death")
 	} else if rl.IsKeyPressed(.H) {
-		spine_drawable_animate(&self.spine_drawable, "hover")
+		spine_drawable_animate(&self.spine_drawable, "hoverboard")
 	} else if rl.IsKeyPressed(.SPACE) {
 		spine_drawable_animate(&self.spine_drawable, "jump", loop = false)
 		spine_drawable_animate_add(&self.spine_drawable, "run")
