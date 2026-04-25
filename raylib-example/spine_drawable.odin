@@ -128,6 +128,7 @@ spine_drawable_draw :: proc(self: ^SpineDrawable) {
 		set_blend_mode(blend_mode, false)
 		defer rl.EndBlendMode()
 
+		// TODO: figure out if I'm rendering things backwards -- should this be something I have to do here?
 		rlgl.DisableBackfaceCulling()
 		defer rlgl.EnableBackfaceCulling()
 
