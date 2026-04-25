@@ -3,6 +3,8 @@
 [Odin](https://odin-lang.org) language bindings for the [Spine 4.3](https://esotericsoftware.com) C runtime.
 Used for crazy awesome 2d animations in games.
 
+<img src="screenshot-1.png" />
+
 ## Caveat Emptor / Momento Mori
 
 🚧 This project is dangerously under construction. 🚧
