@@ -5,9 +5,9 @@ import "core:c"
 when ODIN_OS == .Windows {
 	foreign import lib "libspine-c.lib"
 } else when ODIN_OS == .Darwin {
-	foreign import lib {"libspine-c.a", "libspine-cpp.a", "system:c++"}
+	foreign import lib {"macos/libspine-c.a", "macos/libspine-cpp.a", "system:c++"}
 } else when ODIN_OS == .Linux {
-	foreign import lib "libspine-c.so"
+	foreign import lib {"linux-x86_64/libspine-c.a", "linux-x86_64/libspine-cpp.a", "system:stdc++"}
 }
 
 PropertyId :: distinct c.longlong
